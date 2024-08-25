@@ -39,16 +39,11 @@ export default function UserMenu() {
           throw new Error('An unknown error occurred. Please try again.')
         }
       } catch (error) {
-        console.log(error)
         throw error
       }
     }
 
-    if (userId) {
-      1
-      console.log('set token')
-      getUser(userId)
-    }
+    if (userId) getUser(userId)
   }, [token, user])
 
   return (
