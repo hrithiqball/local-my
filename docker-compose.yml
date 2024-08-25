@@ -1,7 +1,0 @@
-services:
-  vite-local-my:
-    build: .
-    ports:
-      - '5173:5173'
-    environment:
-      - NODE_ENV=production
