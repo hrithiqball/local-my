@@ -1,30 +1,37 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import Home from '@/pages/Home'
-import Profile from '@/pages/Profile'
-import About from '@/pages/About'
-import MainLayout from '@/layout/main'
-import NotFound from '@/pages/NotFound'
-import Login from '@/pages/Login'
-import Business from '@/pages/Business'
-import Register from '@/pages/Register'
-import PrivateRoutes from './PrivateRoutes'
+import MainLayout from '@/layout/MainLayout'
+import AboutPage from '@/pages/AboutPage'
+import LoginPage from '@/pages/auth/LoginPage'
+import RegisterPage from '@/pages/auth/RegisterPage'
+import BasePage from '@/pages/BasePage'
+import BusinessListPage from '@/pages/business/BusinessListPage'
+import CurrentUserBusinessPage from '@/pages/business/CurrentUserBusiness'
+import HomePage from '@/pages/HomePage'
+import NotFoundPage from '@/pages/NotFoundPage'
+import ProfilePage from '@/pages/ProfilePage'
+import PrivateRoutes from '@/routes/PrivateRoutes'
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 
 function AppRoutes(): JSX.Element {
   return (
     <Router>
       <Routes>
         <Route element={<MainLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/business" element={<Business />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+
+          <Route path="/business" element={<BasePage />}>
+            <Route index element={<BusinessListPage />} />
+            <Route path=":userId" element={<CurrentUserBusinessPage />} />
+          </Route>
 
           <Route element={<PrivateRoutes />}>
-            <Route path="/profile/:id" element={<Profile />} />
+            <Route path="/profile/:id" element={<ProfilePage />} />
           </Route>
         </Route>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="*" element={<NotFound />} />
+
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
   )

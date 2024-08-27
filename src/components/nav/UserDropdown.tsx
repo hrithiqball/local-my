@@ -29,7 +29,7 @@ export default function UserDropdown({ user }: UserDropdownProps) {
   }
 
   function handleRedirectBusiness() {
-    navigate(`/business`)
+    navigate(`/business/${user.id}`)
   }
 
   function handleLogout() {

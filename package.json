@@ -21,10 +21,12 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "jwt-decode": "^4.0.0",
+    "leaflet": "^1.9.4",
     "lucide-react": "^0.435.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.0",
+    "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.26.1",
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.5.2",
@@ -34,7 +36,9 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@tailwindcss/typography": "^0.5.14",
     "@tanstack/eslint-plugin-query": "^5.52.0",
+    "@types/leaflet": "^1.9.12",
     "@types/node": "^22.5.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
@@ -51,5 +55,6 @@
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
     "vite": "5.3.5"
-  }
+  },
+  "packageManager": "pnpm@9.9.0+sha512.60c18acd138bff695d339be6ad13f7e936eea6745660d4cc4a776d5247c540d0edee1a563695c183a66eb917ef88f2b4feb1fc25f32a7adcadc7aaf3438e99c1"
 }

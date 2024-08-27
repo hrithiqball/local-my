@@ -1,10 +1,10 @@
 import { getCurrentUser } from '@/api/user'
-import Loading from '@/pages/Loading'
+import Loading from '@/pages/LoadingPage'
 import { useQuery } from '@tanstack/react-query'
 import { Navigate, useParams } from 'react-router-dom'
-import Error from '@/pages/Error'
+import Error from '@/pages/ErrorPage'
 
-export default function Profile() {
+export default function ProfilePage() {
   const { id } = useParams()
 
   if (!id) return <Navigate to="/" replace />

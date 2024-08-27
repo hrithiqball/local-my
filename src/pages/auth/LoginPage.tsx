@@ -22,7 +22,7 @@ const loginSchema = z.object({
   password: z.string().min(6)
 })
 
-export default function Login() {
+export default function LoginPage() {
   const setToken = useAuthStore.use.setToken()
   const navigate = useNavigate()
 

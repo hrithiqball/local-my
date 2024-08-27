@@ -1,14 +1,11 @@
-import { Loader2 } from 'lucide-react'
-
-type LoadingProps = {
+type ErrorPageProps = {
   message?: string
 }
 
-export default function Loading({ message }: LoadingProps) {
+export default function ErrorPage({ message }: ErrorPageProps) {
   return (
     <div className="flex h-full w-full items-center justify-center">
       <div className="flex flex-col items-center justify-center">
-        <Loader2 className="size-12 animate-spin" />
         <span className="text-center">{message}</span>
       </div>
     </div>
