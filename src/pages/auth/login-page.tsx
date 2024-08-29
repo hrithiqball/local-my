@@ -9,7 +9,7 @@ import {
   FormMessage
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { useAuthStore } from '@/store/authStore'
+import { useAuthStore } from '@/store/auth-store'
 import { login } from '@/api/user'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'

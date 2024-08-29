@@ -1,12 +1,14 @@
 import { create } from 'zustand'
-import { createSelectors } from './createSelectors'
+
+import { User } from '@/types/user'
+import { createSelectors } from '@/store/create-selector'
 
 type AuthState = {
   token: string | null
   setToken: (token: string) => void
   clearToken: () => void
-  user: any
-  setUser: (user: any) => void
+  user: User | null
+  setUser: (user: User) => void
 }
 
 export const useAuthStore = createSelectors(
@@ -22,6 +24,6 @@ export const useAuthStore = createSelectors(
       set({ token: null })
     },
     user: null,
-    setUser: (user: any) => set({ user })
+    setUser: (user: User) => set({ user })
   }))
 )

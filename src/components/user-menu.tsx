@@ -1,3 +1,4 @@
+import { getCurrentUser } from '@/api/user'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -5,14 +6,14 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { HEADERS, REQUEST_URL } from '@/lib/constants'
 import { getUserIdFromToken } from '@/lib/jwt'
 import { useTheme } from '@/provider/theme-provider'
-import { useAuthStore } from '@/store/authStore'
-import { Moon, Sun } from 'lucide-react'
+import { useAuthStore } from '@/store/auth-store'
+import { useQuery } from '@tanstack/react-query'
+import { Loader2, Moon, Sun } from 'lucide-react'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import UserDropdown from './nav/UserDropdown'
+import UserDropdown from './nav/user-dropdown'
 
 export default function UserMenu() {
   const { setTheme } = useTheme()
@@ -22,29 +23,20 @@ export default function UserMenu() {
 
   const userId = token ? getUserIdFromToken(token) : null
 
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['user', userId],
+    queryFn: () => (userId ? getCurrentUser(userId) : Promise.reject('No user ID')),
+    enabled: Boolean(userId)
+  })
+
   useEffect(() => {
-    if (!token || user) return
-
-    async function getUser(userId: string) {
-      try {
-        const response = await fetch(`${REQUEST_URL}/user/${userId}`, {
-          method: 'GET',
-          headers: HEADERS
-        })
-
-        const data = await response.json()
-        if (response.ok && data) {
-          setUser(data)
-        } else {
-          throw new Error('An unknown error occurred. Please try again.')
-        }
-      } catch (error) {
-        throw error
-      }
+    if (data && !user) {
+      setUser(data)
     }
+  }, [data, user, setUser])
 
-    if (userId) getUser(userId)
-  }, [token, user])
+  if (isLoading) return <Loader2 className="size-4 animate-spin" />
+  if (isError || !data) return <div>Error getting user</div>
 
   return (
     <div className="flex items-center space-x-2">
