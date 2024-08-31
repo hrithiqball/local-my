@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/hrithiqball/local-my/compare/v1.0.1...v1.0.2) (2024-08-31)
+
+
+### Bug Fixes
+
+* didnt safe parse the login response ([0911dc7](https://github.com/hrithiqball/local-my/commit/0911dc78fc6f396e389468dc6f6c0085312247d7))
+
 ## [1.0.1](https://github.com/hrithiqball/local-my/compare/v1.0.0...v1.0.1) (2024-08-31)
 
 
