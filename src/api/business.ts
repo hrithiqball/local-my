@@ -1,5 +1,5 @@
-import { HEADERS, REQUEST_URL } from '@/lib/constants'
-import { BusinessListSchema } from '@/validation/business'
+import { HEADERS, BASE_API_URL } from '@/lib/constants'
+import { BusinessListSchema, BusinessSchema } from '@/validation/business'
 import { z } from 'zod'
 
 export async function createBusiness(formData: FormData) {
@@ -11,7 +11,7 @@ export async function createBusiness(formData: FormData) {
     const headers = new Headers()
     headers.append('Authorization', localStorage.getItem('token')!)
 
-    const response = await fetch(`${REQUEST_URL}/business`, {
+    const response = await fetch(`${BASE_API_URL}/business`, {
       method: 'POST',
       headers,
       body: formData
@@ -37,9 +37,36 @@ export async function createBusiness(formData: FormData) {
   }
 }
 
+export async function getBusiness(businessId: string) {
+  try {
+    const response = await fetch(`${BASE_API_URL}/business/${businessId}`, {
+      method: 'GET',
+      headers: HEADERS
+    })
+
+    if (!response.ok) {
+      const text = await response.text()
+      if (text) throw new Error(text)
+
+      throw new Error('An unknown error occurred. Please try again.')
+    }
+
+    const responseData = await response.json()
+    const business = BusinessSchema.parse(responseData)
+
+    return business
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      throw new Error('Schema validation error ' + JSON.stringify(error.errors))
+    }
+
+    throw error
+  }
+}
+
 export async function getCurrentUserBusiness(userId: string) {
   try {
-    const response = await fetch(`${REQUEST_URL}/user/business/${userId}`, {
+    const response = await fetch(`${BASE_API_URL}/user/business/${userId}`, {
       method: 'GET',
       headers: HEADERS
     })
@@ -54,7 +81,7 @@ export async function getCurrentUserBusiness(userId: string) {
     return business
   } catch (error) {
     if (error instanceof z.ZodError) {
-      throw new Error('Schema validation error ' + error.errors)
+      throw new Error('Schema validation error ' + JSON.stringify(error.errors))
     }
 
     throw error

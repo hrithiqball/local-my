@@ -1,9 +1,9 @@
-import { HEADERS, REQUEST_URL } from '@/lib/constants'
+import { HEADERS, BASE_API_URL } from '@/lib/constants'
 import { UserSchema } from '@/validation/user'
 
 export async function getCurrentUser(userId: string) {
   try {
-    const response = await fetch(`${REQUEST_URL}/user/${userId}`, {
+    const response = await fetch(`${BASE_API_URL}/user/${userId}`, {
       method: 'GET',
       headers: HEADERS
     })
@@ -27,7 +27,7 @@ export async function getCurrentUser(userId: string) {
 
 export async function login(body: string) {
   try {
-    const response = await fetch(`${REQUEST_URL}/auth/login`, {
+    const response = await fetch(`${BASE_API_URL}/auth/login`, {
       method: 'POST',
       headers: HEADERS,
       body

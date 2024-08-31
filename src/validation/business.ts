@@ -7,9 +7,11 @@ export const BusinessSchema = z.object({
   email: z.string().email(),
   phone: z.string(),
   address: z.string().optional(),
-  // website: z.string().url().optional()
+  website: z.string().optional(),
   coverPhoto: z.string().optional(),
-  profilePhoto: z.string().optional()
+  profilePhoto: z.string().optional(),
+  createdAt: z.string(),
+  updatedAt: z.string()
 })
 
 export const BusinessListSchema = z.array(BusinessSchema)

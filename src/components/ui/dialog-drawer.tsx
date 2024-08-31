@@ -1,4 +1,12 @@
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle
+} from '@/components/ui/dialog'
+import {
   Drawer,
   DrawerContent,
   DrawerDescription,
@@ -6,17 +14,9 @@ import {
   DrawerHeader,
   DrawerTitle
 } from '@/components/ui/drawer'
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle
-} from '@/components/ui/sheet'
 import { useMediaQuery } from '@/hooks/use-media-query'
 
-type SheetDrawerProps = {
+type ModalDrawerProps = {
   open: boolean
   onClose: () => void
   children: React.ReactNode
@@ -25,14 +25,14 @@ type SheetDrawerProps = {
   footer?: React.ReactNode
 }
 
-export function SheetDrawer({
+export default function DialogDrawer({
   open,
   onClose,
   children,
   title,
   description,
   footer
-}: SheetDrawerProps) {
+}: ModalDrawerProps) {
   const isDesktop = useMediaQuery('(min-width: 768px)')
 
   function handleClose() {
@@ -40,16 +40,16 @@ export function SheetDrawer({
   }
 
   return isDesktop ? (
-    <Sheet open={open} onOpenChange={handleClose}>
-      <SheetContent>
-        <SheetHeader>
-          <SheetTitle>{title}</SheetTitle>
-          {description && <SheetDescription>{description}</SheetDescription>}
-        </SheetHeader>
+    <Dialog open={open} onOpenChange={handleClose}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>{title}</DialogTitle>
+          {description && <DialogDescription>{description}</DialogDescription>}
+        </DialogHeader>
         {children}
-        {footer && <SheetFooter>{footer}</SheetFooter>}
-      </SheetContent>
-    </Sheet>
+        {footer && <DialogFooter>{footer}</DialogFooter>}
+      </DialogContent>
+    </Dialog>
   ) : (
     <Drawer open={open} onClose={handleClose}>
       <DrawerContent>
