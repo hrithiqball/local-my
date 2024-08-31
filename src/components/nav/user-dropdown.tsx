@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { useAuthStore } from '@/store/authStore'
+import { useAuthStore } from '@/store/auth-store'
 
 type UserDropdownProps = {
   user: any
@@ -29,7 +29,7 @@ export default function UserDropdown({ user }: UserDropdownProps) {
   }
 
   function handleRedirectBusiness() {
-    navigate(`/business`)
+    navigate(`/business/${user.id}`)
   }
 
   function handleLogout() {
