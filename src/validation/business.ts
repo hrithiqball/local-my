@@ -11,7 +11,8 @@ export const BusinessSchema = z.object({
   coverPhoto: z.string().optional(),
   profilePhoto: z.string().optional(),
   createdAt: z.string(),
-  updatedAt: z.string()
+  updatedAt: z.string(),
+  businessOwnerId: z.string().optional()
 })
 
 export const BusinessListSchema = z.array(BusinessSchema)
@@ -25,4 +26,13 @@ export const CreateBusinessSchema = z.object({
   website: z.string().url().optional(),
   coverPhoto: z.string().optional(),
   profilePhoto: z.string().optional()
+})
+
+export const UpdateBusinessSchema = z.object({
+  name: z.string().min(2).optional(),
+  phone: z.string().min(10).optional(),
+  email: z.string().email().optional(),
+  address: z.string().min(10).optional(),
+  website: z.string().url().optional(),
+  allowWhatsApp: z.boolean().optional()
 })

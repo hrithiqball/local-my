@@ -16,6 +16,7 @@ import { Table, TableBody, TableCaption, TableCell, TableRow } from '@/component
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { CopyToClipboard } from '@/lib/clipboard'
 import { BASE_API_URL } from '@/lib/constants'
+import { useAuthStore } from '@/store/auth-store'
 import { useQuery } from '@tanstack/react-query'
 import { format } from 'date-fns'
 import {
@@ -28,16 +29,21 @@ import {
   Globe,
   Mail,
   Milestone,
+  Pencil,
   Phone
 } from 'lucide-react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 
 type BusinessDetailsViewProps = {
   businessId: string | null
 }
 export default function BusinessDetailsView({ businessId }: BusinessDetailsViewProps) {
+  const userId = useAuthStore.use.user()?.id
   if (!businessId) return
+
+  const navigate = useNavigate()
 
   const [isCopied, setIsCopied] = useState(false)
   const [openBusinessHourInfo, setOpenBusinessHourInfo] = useState(false)
@@ -72,6 +78,10 @@ export default function BusinessDetailsView({ businessId }: BusinessDetailsViewP
     if (!data?.address) return
 
     window.open(`https://waze.com/ul?q=${data.address}`)
+  }
+
+  function handleNavigateUpdateBusiness() {
+    navigate(`/business/update/${businessId}`)
   }
 
   function handleOpenGMaps() {
@@ -115,6 +125,17 @@ export default function BusinessDetailsView({ businessId }: BusinessDetailsViewP
 
       <div className="flex flex-col space-y-8">
         <div className="flex flex-col space-y-4">
+          {userId === data.businessOwnerId && (
+            <div className="flex items-center justify-center">
+              <Button
+                onClick={handleNavigateUpdateBusiness}
+                className="flex items-center space-x-2"
+              >
+                <Pencil className="size-4" />
+                <span>Update Business</span>
+              </Button>
+            </div>
+          )}
           <div className="flex items-center space-x-2">
             <Mail className="size-4" />
             <a
