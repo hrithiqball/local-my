@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/hrithiqball/local-my/compare/v1.0.0...v1.0.1) (2024-08-31)
+
+
+### Bug Fixes
+
+* **cicd:** added docker dependancy to run after release ([f633b7c](https://github.com/hrithiqball/local-my/commit/f633b7cd082318880cd0245ea6c658af2ddddd13))
+
 # 1.0.0 (2024-08-31)
 
 
