@@ -29,8 +29,6 @@ export default function CurrentUserBusinessPage() {
   const { userId } = useParams()
   const queryClient = useQueryClient()
 
-  if (!userId) return <Navigate to="/" replace />
-
   const [openCreateBusiness, setOpenCreateBusiness] = useState(false)
   const [openBusinessDetails, setOpenBusinessDetails] = useState(false)
   const [openDeleteBusinessConfirmation, setOpenDeleteBusinessConfirmation] = useState(false)
@@ -40,7 +38,7 @@ export default function CurrentUserBusinessPage() {
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['user-business', userId],
-    queryFn: () => getCurrentUserBusiness(userId)
+    queryFn: () => getCurrentUserBusiness(userId || '')
   })
 
   const deleteBusinessMutation = useMutation({
@@ -58,6 +56,8 @@ export default function CurrentUserBusinessPage() {
       toast.error('An unknown error occurred. Please try again.')
     }
   })
+
+  if (!userId) return <Navigate to="/" replace />
 
   function handleOpenBusinessDetails(businessId: string) {
     setBusinessId(businessId)

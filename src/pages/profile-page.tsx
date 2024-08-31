@@ -7,12 +7,12 @@ import Error from '@/pages/error-page'
 export default function ProfilePage() {
   const { id } = useParams()
 
-  if (!id) return <Navigate to="/" replace />
-
   const { data, isLoading, isError } = useQuery({
     queryKey: ['user', id],
-    queryFn: () => getCurrentUser(id)
+    queryFn: () => getCurrentUser(id || '')
   })
+
+  if (!id) return <Navigate to="/" replace />
 
   if (isLoading) return <Loading />
   if (isError || !data) return <Error />

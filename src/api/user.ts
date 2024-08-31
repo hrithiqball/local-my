@@ -2,6 +2,7 @@ import { HEADERS, BASE_API_URL } from '@/lib/constants'
 import { UserSchema } from '@/validation/user'
 
 export async function getCurrentUser(userId: string) {
+  // eslint-disable-next-line no-useless-catch
   try {
     const response = await fetch(`${BASE_API_URL}/user/${userId}`, {
       method: 'GET',
@@ -16,7 +17,7 @@ export async function getCurrentUser(userId: string) {
       throw new Error('An unknown error occurred. Please try again.')
     }
 
-    const responseData = await response.json()
+    const responseData: unknown = await response.json()
     const user = UserSchema.parse(responseData)
 
     return user
@@ -33,7 +34,7 @@ export async function login(body: string) {
       body
     })
 
-    const data = await response.json()
+    const data: unknown = await response.json()
     if (response.ok && data.token) {
       return data.token
     } else if (data.error) {
