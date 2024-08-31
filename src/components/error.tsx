@@ -1,10 +1,10 @@
 import { AlertCircle } from 'lucide-react'
 
-type ErrorProps = {
+type ErrorComponentProps = {
   message?: string
 }
 
-export default function Error({ message = 'Something went wrong!' }: ErrorProps) {
+export default function ErrorComponent({ message = 'Something went wrong!' }: ErrorComponentProps) {
   return (
     <div className="flex items-center space-x-2 p-4 text-red-500">
       <AlertCircle />

@@ -25,11 +25,11 @@ export async function createBusiness(formData: FormData) {
       throw new Error('An unknown error occurred. Please try again.')
     }
 
-    const responseData = await response.json()
+    const responseData: unknown = await response.json()
     return responseData
   } catch (error) {
     if (error instanceof z.ZodError) {
-      throw new Error('Schema validation error ' + error.errors)
+      throw new Error(`Schema validation error, ${JSON.stringify(error.errors)} `)
     }
 
     console.error(error)
@@ -51,7 +51,7 @@ export async function getBusiness(businessId: string) {
       throw new Error('An unknown error occurred. Please try again.')
     }
 
-    const responseData = await response.json()
+    const responseData: unknown = await response.json()
     const business = BusinessSchema.parse(responseData)
 
     return business
@@ -75,7 +75,7 @@ export async function getCurrentUserBusiness(userId: string) {
       throw new Error('An unknown error occurred. Please try again.')
     }
 
-    const responseData = await response.json()
+    const responseData: unknown = await response.json()
     const business = BusinessListSchema.parse(responseData)
 
     return business

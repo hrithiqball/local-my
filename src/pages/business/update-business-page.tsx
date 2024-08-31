@@ -29,14 +29,17 @@ export default function UpdateBusinessPage() {
   const { businessId } = useParams()
   // const queryClient = useQueryClient()
 
-  if (!businessId) return <Navigate to="/" replace />
-
   const [sameWeekdayHour, setSameWeekdayHour] = useState(false)
   const [sameWeekendHour, setSameWeekendHour] = useState(false)
+  const [timeRanges, setTimeRanges] = useState<Record<string, { start: string; end: string }>>({
+    Weekday: { start: '11:00', end: '19:00' },
+    Weekend: { start: '11:00', end: '21:00' },
+    'Public Holiday': { start: '11:00', end: '19:00' }
+  })
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['business', businessId],
-    queryFn: () => getBusiness(businessId)
+    queryFn: () => getBusiness(businessId || '')
   })
 
   // const mutation = useMutation({
@@ -67,15 +70,17 @@ export default function UpdateBusinessPage() {
     }
   })
 
+  useEffect(() => {
+    if (data) {
+      form.reset(data)
+    }
+  }, [data, form])
+
+  if (!businessId) return <Navigate to="/" replace />
+
   const timeIntervals: string[] = []
   const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
   const weekends = ['Saturday', 'Sunday']
-
-  const [timeRanges, setTimeRanges] = useState<Record<string, { start: string; end: string }>>({
-    Weekday: { start: '11:00', end: '19:00' },
-    Weekend: { start: '11:00', end: '21:00' },
-    'Public Holiday': { start: '11:00', end: '19:00' }
-  })
 
   function handleTimeChange(day: string, start: string, end: string) {
     setTimeRanges(prev => ({
@@ -92,12 +97,6 @@ export default function UpdateBusinessPage() {
 
     timeIntervals.push(time)
   }
-
-  useEffect(() => {
-    if (data) {
-      form.reset(data)
-    }
-  }, [data])
 
   function onSubmit(values: UpdateBusiness) {
     console.log(timeRanges)

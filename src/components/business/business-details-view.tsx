@@ -1,5 +1,5 @@
 import { getBusiness } from '@/api/business'
-import Error from '@/components/error'
+import ErrorComponent from '@/components/error'
 import Loading from '@/components/loading'
 import ProductListPreview from '@/components/product/product-list-preview'
 import { Button } from '@/components/ui/button'
@@ -41,8 +41,6 @@ type BusinessDetailsViewProps = {
 }
 export default function BusinessDetailsView({ businessId }: BusinessDetailsViewProps) {
   const userId = useAuthStore.use.user()?.id
-  if (!businessId) return
-
   const navigate = useNavigate()
 
   const [isCopied, setIsCopied] = useState(false)
@@ -50,8 +48,10 @@ export default function BusinessDetailsView({ businessId }: BusinessDetailsViewP
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['business', businessId],
-    queryFn: () => getBusiness(businessId)
+    queryFn: () => getBusiness(businessId ?? '')
   })
+
+  if (!businessId) return
 
   async function handleCopyToClipboard() {
     if (!data?.phone) return
@@ -62,6 +62,11 @@ export default function BusinessDetailsView({ businessId }: BusinessDetailsViewP
       toast.info('Phone number copied to clipboard')
       setTimeout(() => setIsCopied(false), 3000)
     } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message)
+        return
+      }
+
       toast.error('Failed to copy phone number')
     }
   }
@@ -91,7 +96,8 @@ export default function BusinessDetailsView({ businessId }: BusinessDetailsViewP
   }
 
   if (isLoading) return <Loading />
-  if (isError || !data) return <Error message={!data ? 'No data received' : error.message} />
+  if (isError || !data)
+    return <ErrorComponent message={!data ? 'No data received' : error.message} />
 
   return (
     <div className="flex flex-col space-y-20 py-4">
@@ -156,6 +162,7 @@ export default function BusinessDetailsView({ businessId }: BusinessDetailsViewP
                       className="underline-offset-4 hover:text-blue-500 hover:underline"
                       href={`https://wa.me/:${data.phone}`}
                       target="_blank"
+                      rel="noreferrer"
                     >
                       {data.phone}
                     </a>

@@ -67,11 +67,25 @@ export default function CreateBusinessForm({ formId }: CreateBusinessFormProps) 
     formData.append('name', values.name)
     formData.append('email', values.email)
     formData.append('phone', values.phone)
-    values.description && formData.append('description', values.description)
-    values.address && formData.append('address', values.address)
-    values.website && formData.append('website', values.website)
-    coverPhoto.file && formData.append('coverPhoto', coverPhoto.file as Blob)
-    profilePhoto.file && formData.append('profilePhoto', profilePhoto.file as Blob)
+    if (values.description) {
+      formData.append('description', values.description)
+    }
+
+    if (values.address) {
+      formData.append('address', values.address)
+    }
+
+    if (values.website) {
+      formData.append('website', values.website)
+    }
+
+    if (coverPhoto.file) {
+      formData.append('coverPhoto', coverPhoto.file as Blob)
+    }
+
+    if (profilePhoto.file) {
+      formData.append('profilePhoto', profilePhoto.file as Blob)
+    }
 
     mutation.mutate(formData)
   }

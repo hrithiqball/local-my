@@ -1,15 +1,15 @@
-import { jwtDecode } from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode'
 
 type JwtPayload = {
-  sub: string;
-};
+  sub: string
+}
 
 export function getUserIdFromToken(token: string): string | null {
   try {
-    const decoded = jwtDecode<JwtPayload>(token);
-    return decoded.sub;
+    const decoded = jwtDecode<JwtPayload>(token)
+    return decoded.sub
   } catch (error) {
-    console.error('Failed to decode token:', error);
-    return null;
+    console.error('Failed to decode token:', error)
+    return null
   }
 }
