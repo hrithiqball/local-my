@@ -87,3 +87,30 @@ export async function getCurrentUserBusiness(userId: string) {
     throw error
   }
 }
+
+export async function deleteBusiness(businessId: string) {
+  const headers = new Headers()
+  headers.append('Authorization', localStorage.getItem('token')!)
+
+  try {
+    const response = await fetch(`${BASE_API_URL}/business/${businessId}`, {
+      method: 'DELETE',
+      headers
+    })
+
+    if (!response.ok) {
+      const text = await response.text()
+      if (text) throw new Error(text)
+
+      throw new Error('An unknown error occurred. Please try again.')
+    }
+
+    return response
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      throw new Error('Schema validation error ' + JSON.stringify(error.errors))
+    }
+
+    throw error
+  }
+}
