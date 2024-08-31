@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { HEADERS, BASE_API_URL } from '@/lib/constants'
 import { UserSchema } from '@/validation/user'
 
@@ -34,7 +35,7 @@ export async function login(body: string) {
       body
     })
 
-    const data: unknown = await response.json()
+    const data = await response.json()
     if (response.ok && data.token) {
       return data.token
     } else if (data.error) {
