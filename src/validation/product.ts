@@ -6,5 +6,8 @@ export const ProductSchema = z.object({
   description: z.string().optional(),
   price: z.number(),
   stock: z.number(),
+  type: z.string(),
   businessId: z.string()
 })
+
+export const CreateProductSchema = ProductSchema.omit({ id: true })

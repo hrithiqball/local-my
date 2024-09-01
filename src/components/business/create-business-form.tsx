@@ -45,16 +45,15 @@ export default function CreateBusinessForm({ formId }: CreateBusinessFormProps) 
     }
   })
 
-  function handlePhotoChange(
-    e: React.ChangeEvent<HTMLInputElement>,
-    setPhoto: React.Dispatch<React.SetStateAction<PhotoState>>
-  ) {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0]
-      const reader = new FileReader()
+  function handlePhotoChange(setPhoto: React.Dispatch<React.SetStateAction<PhotoState>>) {
+    return (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files && e.target.files[0]) {
+        const file = e.target.files[0]
+        const reader = new FileReader()
 
-      reader.onload = () => setPhoto({ file, preview: reader.result as string })
-      reader.readAsDataURL(e.target.files[0])
+        reader.onload = () => setPhoto({ file, preview: reader.result as string })
+        reader.readAsDataURL(e.target.files[0])
+      }
     }
   }
 
@@ -107,7 +106,7 @@ export default function CreateBusinessForm({ formId }: CreateBusinessFormProps) 
             type="file"
             accept="image/*"
             className="absolute inset-0 cursor-pointer opacity-0"
-            onChange={e => handlePhotoChange(e, setCoverPhoto)}
+            onChange={handlePhotoChange(setCoverPhoto)}
           />
         </div>
 
@@ -127,7 +126,7 @@ export default function CreateBusinessForm({ formId }: CreateBusinessFormProps) 
             type="file"
             accept="image/*"
             className="absolute inset-0 cursor-pointer opacity-0"
-            onChange={e => handlePhotoChange(e, setProfilePhoto)}
+            onChange={handlePhotoChange(setProfilePhoto)}
           />
         </div>
       </div>

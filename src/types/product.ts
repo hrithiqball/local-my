@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { BaseFilter } from './filter'
 
 export type Product = z.infer<typeof ProductSchema>
+export type CreateProduct = Omit<Product, 'id'>
 
 export class ProductFilter extends BaseFilter {
   keyword?: string

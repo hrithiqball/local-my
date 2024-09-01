@@ -15,6 +15,8 @@ const ProfilePage = lazy(() => import('@/pages/profile-page'))
 
 const BusinessListPage = lazy(() => import('@/pages/business/business-list-page'))
 
+const ProductCreatePage = lazy(() => import('@/pages/product/product-create-page'))
+
 const BasePage = lazy(() => import('@/pages/base-page'))
 const CurrentUserBusinessPage = lazy(() => import('@/pages/business/current-business-page'))
 const UpdateBusinessPage = lazy(() => import('@/pages/business/update-business-page'))
@@ -38,6 +40,10 @@ function AppRoutes(): JSX.Element {
 
               <Route path="/business" element={<BasePage />}>
                 <Route path="update/:businessId" element={<UpdateBusinessPage />} />
+              </Route>
+
+              <Route path="/product" element={<BasePage />}>
+                <Route path="create/:businessId" element={<ProductCreatePage />} />
               </Route>
             </Route>
           </Route>
