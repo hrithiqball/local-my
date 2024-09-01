@@ -5,20 +5,24 @@ import { lazy, Suspense } from 'react'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 
 const AboutPage = lazy(() => import('@/pages/about-page'))
-const LoginPage = lazy(() => import('@/pages/auth/login-page'))
-const RegisterPage = lazy(() => import('@/pages/auth/register-page'))
-const BasePage = lazy(() => import('@/pages/base-page'))
-const BusinessListPage = lazy(() => import('@/pages/business/business-list-page'))
-const CurrentUserBusinessPage = lazy(() => import('@/pages/business/current-business-page'))
-const UpdateBusinessPage = lazy(() => import('@/pages/business/update-business-page'))
 const HomePage = lazy(() => import('@/pages/home-page'))
 const NotFoundPage = lazy(() => import('@/pages/not-found-page'))
+
+const LoginPage = lazy(() => import('@/pages/auth/login-page'))
+const RegisterPage = lazy(() => import('@/pages/auth/register-page'))
+
 const ProfilePage = lazy(() => import('@/pages/profile-page'))
+
+const BusinessListPage = lazy(() => import('@/pages/business/business-list-page'))
+
+const BasePage = lazy(() => import('@/pages/base-page'))
+const CurrentUserBusinessPage = lazy(() => import('@/pages/business/current-business-page'))
+const UpdateBusinessPage = lazy(() => import('@/pages/business/update-business-page'))
 
 function AppRoutes(): JSX.Element {
   return (
     <Router>
-      <Suspense fallback={<LoadingPage />}>
+      <Suspense fallback={<LoadingPage lazy />}>
         <Routes>
           <Route element={<MainLayout />}>
             <Route path="/" element={<HomePage />} />
