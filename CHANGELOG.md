@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/hrithiqball/local-my/compare/v1.0.2...v1.1.0) (2024-09-01)
+
+
+### Features
+
+* added brand icon(temp) and updated error page ([28bf102](https://github.com/hrithiqball/local-my/commit/28bf1021033915e632a512854a0e819d0e273fac))
+* added lazy loading for routes for performance ([373de71](https://github.com/hrithiqball/local-my/commit/373de71ab988ea2eff114dc669bf0dee7eb492dd))
+
 ## [1.0.2](https://github.com/hrithiqball/local-my/compare/v1.0.1...v1.0.2) (2024-08-31)
 
 
