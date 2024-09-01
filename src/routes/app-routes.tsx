@@ -1,43 +1,52 @@
 import MainLayout from '@/layout/main-layout'
-import AboutPage from '@/pages/about-page'
-import LoginPage from '@/pages/auth/login-page'
-import RegisterPage from '@/pages/auth/register-page'
-import BasePage from '@/pages/base-page'
-import BusinessListPage from '@/pages/business/business-list-page'
-import CurrentUserBusinessPage from '@/pages/business/current-business-page'
-import UpdateBusinessPage from '@/pages/business/update-business-page'
-import HomePage from '@/pages/home-page'
-import NotFoundPage from '@/pages/not-found-page'
-import ProfilePage from '@/pages/profile-page'
+import LoadingPage from '@/pages/loading-page'
 import PrivateRoutes from '@/routes/private-route'
+import { lazy, Suspense } from 'react'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+
+const AboutPage = lazy(() => import('@/pages/about-page'))
+const HomePage = lazy(() => import('@/pages/home-page'))
+const NotFoundPage = lazy(() => import('@/pages/not-found-page'))
+
+const LoginPage = lazy(() => import('@/pages/auth/login-page'))
+const RegisterPage = lazy(() => import('@/pages/auth/register-page'))
+
+const ProfilePage = lazy(() => import('@/pages/profile-page'))
+
+const BusinessListPage = lazy(() => import('@/pages/business/business-list-page'))
+
+const BasePage = lazy(() => import('@/pages/base-page'))
+const CurrentUserBusinessPage = lazy(() => import('@/pages/business/current-business-page'))
+const UpdateBusinessPage = lazy(() => import('@/pages/business/update-business-page'))
 
 function AppRoutes(): JSX.Element {
   return (
     <Router>
-      <Routes>
-        <Route element={<MainLayout />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-
-          <Route path="/business" element={<BasePage />}>
-            <Route index element={<BusinessListPage />} />
-            <Route path=":userId" element={<CurrentUserBusinessPage />} />
-          </Route>
-
-          <Route element={<PrivateRoutes />}>
-            <Route path="/profile/:id" element={<ProfilePage />} />
+      <Suspense fallback={<LoadingPage lazy />}>
+        <Routes>
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
 
             <Route path="/business" element={<BasePage />}>
-              <Route path="update/:businessId" element={<UpdateBusinessPage />} />
+              <Route index element={<BusinessListPage />} />
+              <Route path=":userId" element={<CurrentUserBusinessPage />} />
+            </Route>
+
+            <Route element={<PrivateRoutes />}>
+              <Route path="/profile/:id" element={<ProfilePage />} />
+
+              <Route path="/business" element={<BasePage />}>
+                <Route path="update/:businessId" element={<UpdateBusinessPage />} />
+              </Route>
             </Route>
           </Route>
-        </Route>
 
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
     </Router>
   )
 }
