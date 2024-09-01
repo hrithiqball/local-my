@@ -36,7 +36,7 @@ export default function UserMenu() {
   }, [data, user, setUser])
 
   if (isLoading) return <Loader2 className="size-4 animate-spin" />
-  if (isError || !data) return <div>Error getting user</div>
+  if (isError) return <div>Error getting user</div>
 
   return (
     <div className="flex items-center space-x-2">
