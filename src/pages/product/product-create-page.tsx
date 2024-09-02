@@ -1,4 +1,5 @@
 import { getBusiness } from '@/api/business'
+import { createProduct } from '@/api/product'
 import ErrorComponent from '@/components/error'
 import LoadingComponent from '@/components/loading'
 import { Button } from '@/components/ui/button'
@@ -16,14 +17,16 @@ import { PhotoState } from '@/types/photo'
 import { CreateProduct } from '@/types/product'
 import { CreateProductSchema } from '@/validation/product'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Boxes, DollarSign, FileIcon, FileText, ImageIcon, Package, Tag } from 'lucide-react'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
+import { toast } from 'sonner'
 
 export default function ProductCreatePage() {
   const { businessId } = useParams()
+  const queryClient = useQueryClient()
 
   const [productPhoto, setProductPhoto] = useState<PhotoState>({ file: null, preview: null })
 
@@ -32,12 +35,38 @@ export default function ProductCreatePage() {
     queryFn: () => getBusiness(businessId ?? '')
   })
 
+  const createProductMutation = useMutation({
+    mutationFn: createProduct,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['business', businessId] })
+      toast.success('Product created successfully')
+    },
+    onError: err => {
+      if (err instanceof Error) {
+        toast.error(err.message)
+        return
+      }
+
+      toast.error('An unknown error occurred. Please try again.')
+    }
+  })
+
   const form = useForm<CreateProduct>({
     resolver: zodResolver(CreateProductSchema)
   })
 
   function onSubmit(values: CreateProduct) {
-    console.log(values)
+    const formData = new FormData()
+
+    formData.append('name', values.name)
+    formData.append('businessId', businessId ?? '')
+    formData.append('price', values.price.toString())
+    formData.append('stock', values.stock.toString())
+    formData.append('type', values.type)
+    formData.append('description', values.description ?? '')
+    formData.append('featurePhoto', productPhoto.file as Blob)
+
+    createProductMutation.mutate(formData)
   }
 
   function handlePhotoChange(setPhoto: React.Dispatch<React.SetStateAction<PhotoState>>) {
@@ -153,25 +182,27 @@ export default function ProductCreatePage() {
                 <ImageIcon className="size-4" />
                 <span>Photo</span>
               </FormLabel>
-              <div className="flex aspect-video h-48 w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg border border-dashed border-gray-500 bg-gray-100 dark:bg-gray-800">
-                {productPhoto.preview ? (
-                  <img
-                    src={productPhoto.preview}
-                    alt="product-photo-preview"
-                    className="h-full w-full object-cover"
+              <div className="relative">
+                <div className="flex aspect-video h-48 w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg border border-dashed border-gray-500 bg-gray-100 dark:bg-gray-800">
+                  {productPhoto.preview ? (
+                    <img
+                      src={productPhoto.preview}
+                      alt="product-photo-preview"
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <div className="flex flex-col items-center font-semibold">
+                      <FileIcon />
+                      <span>Click to add photo</span>
+                    </div>
+                  )}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="absolute inset-0 cursor-pointer opacity-0"
+                    onChange={handlePhotoChange(setProductPhoto)}
                   />
-                ) : (
-                  <div className="flex flex-col items-center font-semibold">
-                    <FileIcon />
-                    <span>Click to add photo</span>
-                  </div>
-                )}
-                <input
-                  type="file"
-                  accept="image/*"
-                  className="absolute inset-0 cursor-pointer opacity-0"
-                  onChange={handlePhotoChange(setProductPhoto)}
-                />
+                </div>
               </div>
             </FormItem>
             <div className="flex justify-end">

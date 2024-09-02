@@ -1,4 +1,4 @@
-import { getCurrentUserBusiness, deleteBusiness } from '@/api/business'
+import { deleteBusiness, getCurrentUserBusiness } from '@/api/business'
 import BusinessDetailsView from '@/components/business/business-details-view'
 import CreateBusinessForm from '@/components/business/create-business-form'
 import {
@@ -20,14 +20,15 @@ import ErrorPage from '@/pages/error-page'
 import LoadingPage from '@/pages/loading-page'
 import { Business } from '@/types/business'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { Plus, Trash2 } from 'lucide-react'
+import { PanelRight, Plus, Trash2 } from 'lucide-react'
 import React, { useState } from 'react'
-import { Navigate, useParams } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 
-export default function CurrentUserBusinessPage() {
+export default function BusinessUserPage() {
   const { userId } = useParams()
   const queryClient = useQueryClient()
+  const navigate = useNavigate()
 
   const [openCreateBusiness, setOpenCreateBusiness] = useState(false)
   const [openBusinessDetails, setOpenBusinessDetails] = useState(false)
@@ -60,8 +61,11 @@ export default function CurrentUserBusinessPage() {
   if (!userId) return <Navigate to="/" replace />
 
   function handleOpenBusinessDetails(businessId: string) {
-    setBusinessId(businessId)
-    setOpenBusinessDetails(true)
+    return (event: React.MouseEvent<HTMLButtonElement>) => {
+      event.stopPropagation()
+      setBusinessId(businessId)
+      setOpenBusinessDetails(true)
+    }
   }
 
   function handleCloseBusinessDetails() {
@@ -74,6 +78,12 @@ export default function CurrentUserBusinessPage() {
       setBusinessId(businessId)
       setBusinessDeleteName(businessName)
       setOpenDeleteBusinessConfirmation(true)
+    }
+  }
+
+  function handleNavigateToBusiness(businessId: string) {
+    return () => {
+      navigate('/business/' + businessId)
     }
   }
 
@@ -111,18 +121,30 @@ export default function CurrentUserBusinessPage() {
           <Card
             className="cursor-pointer"
             key={business.id}
-            onClick={() => handleOpenBusinessDetails(business.id)}
+            onClick={handleNavigateToBusiness(business.id)}
           >
             <CardHeader>
-              <CardTitle className="flex justify-between">
-                <span>{business.name}</span>
-                <Button
-                  onClick={handleOpenBusinessDeletionConfirmation(business.name, business.id)}
-                  variant="ghost"
-                  size="icon"
-                >
-                  <Trash2 className="size-4 text-gray-500 hover:text-red-500" />
-                </Button>
+              <CardTitle className="flex items-center justify-between">
+                <div className="flex flex-col">
+                  <span className="text-lg font-semibold">{business.name}</span>
+                  <span className="text-sm text-gray-500">Description is not here yet</span>
+                </div>
+                <div className="flex space-x-1">
+                  <Button
+                    onClick={handleOpenBusinessDetails(business.id)}
+                    size="icon"
+                    variant="ghost"
+                  >
+                    <PanelRight className="size-4" />
+                  </Button>
+                  <Button
+                    onClick={handleOpenBusinessDeletionConfirmation(business.name, business.id)}
+                    variant="ghost"
+                    size="icon"
+                  >
+                    <Trash2 className="size-4 text-gray-500 hover:text-red-500" />
+                  </Button>
+                </div>
               </CardTitle>
             </CardHeader>
           </Card>

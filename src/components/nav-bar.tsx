@@ -8,7 +8,6 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle
 } from '@/components/ui/navigation-menu'
-import { Link } from 'react-router-dom'
 
 export default function NavBar() {
   const businesses = [
@@ -70,9 +69,9 @@ export default function NavBar() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link to="/about">
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>About</NavigationMenuLink>
-          </Link>
+          <NavigationMenuLink href="/about" className={navigationMenuTriggerStyle()}>
+            About
+          </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

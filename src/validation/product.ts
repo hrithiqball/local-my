@@ -10,4 +10,10 @@ export const ProductSchema = z.object({
   businessId: z.string()
 })
 
-export const CreateProductSchema = ProductSchema.omit({ id: true })
+export const CreateProductSchema = z.object({
+  name: z.string(),
+  description: z.string().optional(),
+  price: z.coerce.number(),
+  stock: z.coerce.number(),
+  type: z.string()
+})

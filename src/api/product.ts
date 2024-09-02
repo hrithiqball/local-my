@@ -4,9 +4,11 @@ import { ProductSchema } from '@/validation/product'
 import { ResponseSchema } from '@/validation/response'
 
 export async function createProduct(formData: FormData) {
+  console.log(formData)
   try {
     const response = await api.post('/product', formData)
-    return ProductSchema.parse(response.data)
+    console.log(response.data)
+    // return ProductSchema.parse(response.data)
   } catch (error) {
     handleError(error)
   }

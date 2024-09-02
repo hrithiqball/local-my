@@ -63,28 +63,15 @@ export default function CreateBusinessForm({ formId }: CreateBusinessFormProps) 
 
   async function onSubmit(values: CreateBusiness) {
     const formData = new FormData()
+
     formData.append('name', values.name)
     formData.append('email', values.email)
     formData.append('phone', values.phone)
-    if (values.description) {
-      formData.append('description', values.description)
-    }
-
-    if (values.address) {
-      formData.append('address', values.address)
-    }
-
-    if (values.website) {
-      formData.append('website', values.website)
-    }
-
-    if (coverPhoto.file) {
-      formData.append('coverPhoto', coverPhoto.file as Blob)
-    }
-
-    if (profilePhoto.file) {
-      formData.append('profilePhoto', profilePhoto.file as Blob)
-    }
+    if (values.description) formData.append('description', values.description)
+    if (values.address) formData.append('address', values.address)
+    if (values.website) formData.append('website', values.website)
+    if (coverPhoto.file) formData.append('coverPhoto', coverPhoto.file as Blob)
+    if (profilePhoto.file) formData.append('profilePhoto', profilePhoto.file as Blob)
 
     mutation.mutate(formData)
   }

@@ -1,9 +1,9 @@
-import { ProductSchema } from '@/validation/product'
+import { CreateProductSchema, ProductSchema } from '@/validation/product'
 import { z } from 'zod'
 import { BaseFilter } from './filter'
 
 export type Product = z.infer<typeof ProductSchema>
-export type CreateProduct = Omit<Product, 'id'>
+export type CreateProduct = z.infer<typeof CreateProductSchema>
 
 export class ProductFilter extends BaseFilter {
   keyword?: string
