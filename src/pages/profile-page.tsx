@@ -1,8 +1,9 @@
-import { getCurrentUser } from '@/api/user'
-import Loading from '@/pages/loading-page'
-import { useQuery } from '@tanstack/react-query'
 import { Navigate, useParams } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
+
+import { getCurrentUser } from '@/api/user'
 import Error from '@/pages/error-page'
+import Loading from '@/pages/loading-page'
 
 export default function ProfilePage() {
   const { id } = useParams()

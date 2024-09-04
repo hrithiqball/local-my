@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import {
   ListItem,
   NavigationMenu,
@@ -8,7 +10,6 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle
 } from '@/components/ui/navigation-menu'
-import { Link } from 'react-router-dom'
 
 export default function NavBar() {
   const businesses = [

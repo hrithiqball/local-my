@@ -1,3 +1,8 @@
+import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
+import { Loader2, Moon, Sun } from 'lucide-react'
+
 import { getCurrentUser } from '@/api/user'
 import { Button } from '@/components/ui/button'
 import {
@@ -9,10 +14,6 @@ import {
 import { getUserIdFromToken } from '@/lib/jwt'
 import { useTheme } from '@/provider/theme-provider'
 import { useAuthStore } from '@/store/auth-store'
-import { useQuery } from '@tanstack/react-query'
-import { Loader2, Moon, Sun } from 'lucide-react'
-import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import UserDropdown from './nav/user-dropdown'
 
 export default function UserMenu() {

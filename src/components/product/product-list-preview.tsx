@@ -1,3 +1,6 @@
+import { useNavigate } from 'react-router-dom'
+import { Plus } from 'lucide-react'
+
 import {
   Carousel,
   CarouselContent,
@@ -5,8 +8,6 @@ import {
   CarouselNext,
   CarouselPrevious
 } from '@/components/ui/carousel'
-import { Plus } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
 import { Card, CardContent } from '../ui/card'
 
 type ProductListPreviewProps = {

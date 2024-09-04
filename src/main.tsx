@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { Toaster } from 'sonner'
 
 import '@/index.css'
+
 import { Providers } from '@/provider'
 import AppRoutes from '@/routes/app-routes'
 
