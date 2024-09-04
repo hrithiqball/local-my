@@ -1,11 +1,12 @@
+import { useState } from 'react'
+
 import {
   Select,
-  SelectTrigger,
   SelectContent,
   SelectItem,
+  SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
-import { useState } from 'react'
 import { TableCell, TableRow } from '@/components/ui/table'
 
 type TimeRangeRowProps = {

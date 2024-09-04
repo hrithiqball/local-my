@@ -1,4 +1,10 @@
-import { getCurrentUserBusiness, deleteBusiness } from '@/api/business'
+import React, { useState } from 'react'
+import { Navigate, useParams } from 'react-router-dom'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { Plus, Trash2 } from 'lucide-react'
+import { toast } from 'sonner'
+
+import { deleteBusiness, getCurrentUserBusiness } from '@/api/business'
 import BusinessDetailsView from '@/components/business/business-details-view'
 import CreateBusinessForm from '@/components/business/create-business-form'
 import {
@@ -19,11 +25,6 @@ import { SheetDrawer } from '@/components/ui/sheet-drawer'
 import ErrorPage from '@/pages/error-page'
 import LoadingPage from '@/pages/loading-page'
 import { Business } from '@/types/business'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { Plus, Trash2 } from 'lucide-react'
-import React, { useState } from 'react'
-import { Navigate, useParams } from 'react-router-dom'
-import { toast } from 'sonner'
 
 export default function CurrentUserBusinessPage() {
   const { userId } = useParams()

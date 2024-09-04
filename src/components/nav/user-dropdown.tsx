@@ -1,3 +1,6 @@
+import { useNavigate } from 'react-router-dom'
+import { User2 } from 'lucide-react'
+
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -10,8 +13,6 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { useAuthStore } from '@/store/auth-store'
 import { User } from '@/types/user'
-import { User2 } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
 
 type UserDropdownProps = {
   user: User

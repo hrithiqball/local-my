@@ -1,3 +1,22 @@
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
+import { format } from 'date-fns'
+import {
+  Car,
+  ChevronDown,
+  Clipboard,
+  ClipboardCheck,
+  Clock,
+  ExternalLink,
+  Globe,
+  Mail,
+  Milestone,
+  Pencil,
+  Phone
+} from 'lucide-react'
+import { toast } from 'sonner'
+
 import { getBusiness } from '@/api/business'
 import ErrorComponent from '@/components/error'
 import Loading from '@/components/loading'
@@ -17,24 +36,6 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { CopyToClipboard } from '@/lib/clipboard'
 import { BASE_API_URL } from '@/lib/constants'
 import { useAuthStore } from '@/store/auth-store'
-import { useQuery } from '@tanstack/react-query'
-import { format } from 'date-fns'
-import {
-  Car,
-  ChevronDown,
-  Clipboard,
-  ClipboardCheck,
-  Clock,
-  ExternalLink,
-  Globe,
-  Mail,
-  Milestone,
-  Pencil,
-  Phone
-} from 'lucide-react'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { toast } from 'sonner'
 
 type BusinessDetailsViewProps = {
   businessId: string | null

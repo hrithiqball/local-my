@@ -1,7 +1,8 @@
+import { Outlet } from 'react-router-dom'
+
 import BrandIcon from '@/components/brand-icon'
 import NavBar from '@/components/nav-bar'
 import UserMenu from '@/components/user-menu'
-import { Outlet } from 'react-router-dom'
 
 export default function MainLayout() {
   return (
