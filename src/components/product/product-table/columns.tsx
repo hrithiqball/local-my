@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { Checkbox } from '@/components/ui/checkbox'
+import { Link } from 'react-router-dom'
 
 export const columns: ColumnDef<Product>[] = [
   {
@@ -36,7 +37,19 @@ export const columns: ColumnDef<Product>[] = [
   },
   {
     accessorKey: 'name',
-    header: 'Name'
+    header: 'Name',
+    cell: ({ row }) => {
+      const product = row.original
+
+      return (
+        <Link
+          className="underline-offset-4 hover:text-blue-500 hover:underline"
+          to={`/product/${product.id}`}
+        >
+          {product.name}
+        </Link>
+      )
+    }
   },
   {
     accessorKey: 'price',

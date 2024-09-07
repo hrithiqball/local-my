@@ -7,7 +7,8 @@ export const ProductSchema = z.object({
   price: z.number(),
   stock: z.number(),
   type: z.string(),
-  businessId: z.string()
+  businessId: z.string(),
+  featurePhoto: z.string().nullable()
 })
 
 export const CreateProductSchema = z.object({

@@ -25,7 +25,7 @@ export async function getProductList(params: ProductFilter) {
 
 export async function getProduct(productId: string) {
   try {
-    const response = await api.get(`/product/${productId}`)
+    const response = await api.get(`/product?id=${productId}`)
     return ProductSchema.parse(response.data)
   } catch (error) {
     handleError(error)

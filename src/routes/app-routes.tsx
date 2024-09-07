@@ -19,6 +19,7 @@ const BusinessUserPage = lazy(() => import('@/pages/business/business-user-page'
 const UpdateBusinessPage = lazy(() => import('@/pages/business/update-business-page'))
 
 const ProductCreatePage = lazy(() => import('@/pages/product/product-create-page'))
+const ProductPage = lazy(() => import('@/pages/product/product-page'))
 
 function AppRoutes(): JSX.Element {
   return (
@@ -33,6 +34,10 @@ function AppRoutes(): JSX.Element {
               <Route index element={<BusinessListPage />} />
               <Route path=":businessId" element={<BusinessPage />} />
               <Route path="user/:userId" element={<BusinessUserPage />} />
+            </Route>
+
+            <Route path="/product">
+              <Route path=":id" element={<ProductPage />} />
             </Route>
 
             <Route element={<PrivateRoutes />}>
