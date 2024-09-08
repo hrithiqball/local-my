@@ -1,13 +1,9 @@
-import { getBusiness } from '@/api/business'
-import { columns } from '@/pages/product/components/product-table/columns'
-import ProductTable from '@/pages/product/components/product-table/table'
-import { Button } from '@/components/ui/button'
-import Header from '@/components/ui/header'
-import ErrorPage from '@/pages/error-page'
-import LoadingPage from '@/pages/loading-page'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Link, useParams } from 'react-router-dom'
-import { useProductStore } from '../../store/product-store'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { toast } from 'sonner'
+
+import { getBusiness } from '@/api/business'
+import { deleteProduct } from '@/api/product'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,8 +14,13 @@ import {
   AlertDialogHeader,
   AlertDialogTitle
 } from '@/components/ui/alert-dialog'
-import { deleteProduct } from '@/api/product'
-import { toast } from 'sonner'
+import { Button } from '@/components/ui/button'
+import Header from '@/components/ui/header'
+import ErrorPage from '@/pages/error-page'
+import LoadingPage from '@/pages/loading-page'
+import { columns } from '@/pages/product/components/product-table/columns'
+import ProductTable from '@/pages/product/components/product-table/table'
+import { useProductStore } from '@/store/product-store'
 
 export default function BusinessPage() {
   const { businessId } = useParams()

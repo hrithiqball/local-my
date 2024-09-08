@@ -1,11 +1,12 @@
+import { z } from 'zod'
+
+import { BaseFilter } from '@/types/filter'
 import {
   CreateProductSchema,
   ProductListResponseSchema,
   ProductSchema,
   UpdateProductSchema
 } from '@/validation/product'
-import { z } from 'zod'
-import { BaseFilter } from './filter'
 
 export type Product = z.infer<typeof ProductSchema>
 export type CreateProduct = z.infer<typeof CreateProductSchema>

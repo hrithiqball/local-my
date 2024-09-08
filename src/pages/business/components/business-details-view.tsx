@@ -21,7 +21,6 @@ import { getBusiness } from '@/api/business'
 import ErrorComponent from '@/components/error'
 import { Image } from '@/components/image'
 import Loading from '@/components/loading'
-import ProductListPreview from '@/pages/product/components/product-list-preview'
 import { Button } from '@/components/ui/button'
 import DialogDrawer from '@/components/ui/dialog-drawer'
 import {
@@ -35,6 +34,7 @@ import {
 import { Table, TableBody, TableCaption, TableCell, TableRow } from '@/components/ui/table'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { CopyToClipboard } from '@/lib/clipboard'
+import ProductListPreview from '@/pages/product/components/product-list-preview'
 import { useAuthStore } from '@/store/auth-store'
 
 type BusinessDetailsViewProps = {

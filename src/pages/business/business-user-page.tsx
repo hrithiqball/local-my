@@ -1,6 +1,10 @@
+import React, { useState } from 'react'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { PanelRight, Plus, Trash2 } from 'lucide-react'
+import { toast } from 'sonner'
+
 import { deleteBusiness, getCurrentUserBusiness } from '@/api/business'
-import BusinessDetailsView from '@/pages/business/components/business-details-view'
-import CreateBusinessForm from '@/pages/business/components/create-business-form'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -16,14 +20,11 @@ import { Card, CardHeader, CardTitle } from '@/components/ui/card'
 import Header from '@/components/ui/header'
 import { Input } from '@/components/ui/input'
 import { SheetDrawer } from '@/components/ui/sheet-drawer'
+import BusinessDetailsView from '@/pages/business/components/business-details-view'
+import CreateBusinessForm from '@/pages/business/components/create-business-form'
 import ErrorPage from '@/pages/error-page'
 import LoadingPage from '@/pages/loading-page'
 import { Business } from '@/types/business'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { PanelRight, Plus, Trash2 } from 'lucide-react'
-import React, { useState } from 'react'
-import { Navigate, useNavigate, useParams } from 'react-router-dom'
-import { toast } from 'sonner'
 
 export default function BusinessUserPage() {
   const { userId } = useParams()

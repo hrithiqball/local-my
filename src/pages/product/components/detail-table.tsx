@@ -1,3 +1,9 @@
+import { useCallback, useMemo } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { faApple, faGoogle, faWaze, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { CreditCard, HandCoins, PhoneCallIcon, QrCode, WalletCards } from 'lucide-react'
+
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -7,12 +13,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
-import { faApple, faGoogle, faWaze, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { CreditCard, HandCoins, PhoneCallIcon, QrCode, WalletCards } from 'lucide-react'
-import { useCallback, useMemo } from 'react'
-import { useSearchParams } from 'react-router-dom'
-import { useProductStore } from '../../../store/product-store'
+import { useProductStore } from '@/store/product-store'
 
 export default function DetailTable() {
   const [searchParams, setSearchParams] = useSearchParams()

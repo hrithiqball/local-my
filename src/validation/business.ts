@@ -1,5 +1,6 @@
 import { z } from 'zod'
-import { ProductSchema } from './product'
+
+import { ProductSchema } from '@/validation/product'
 
 export const BusinessSchema = z.object({
   id: z.string(),

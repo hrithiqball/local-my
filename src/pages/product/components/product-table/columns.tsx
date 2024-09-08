@@ -1,11 +1,11 @@
-import { Button } from '@/components/ui/button'
-import { Product } from '@/types/product'
+import { Link } from 'react-router-dom'
 import { ColumnDef } from '@tanstack/react-table'
 import { ArrowUpDown } from 'lucide-react'
 
+import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
-import { Link } from 'react-router-dom'
-import ActionsProductCell from './actions-product-cell'
+import ActionsProductCell from '@/pages/product/components/product-table/actions-product-cell'
+import { Product } from '@/types/product'
 
 export const columns: ColumnDef<Product>[] = [
   {

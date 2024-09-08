@@ -1,8 +1,9 @@
+import { useState } from 'react'
+import { ChevronLeft, ChevronRight, User2 } from 'lucide-react'
+
 import Rating from '@/components/rating'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { ChevronLeft, ChevronRight, User2 } from 'lucide-react'
-import { useState } from 'react'
 
 const dummyUserReviews = [
   {
