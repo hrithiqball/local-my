@@ -1,5 +1,5 @@
 import { getProduct } from '@/api/product'
-import { BASE_API_URL } from '@/lib/constants'
+import { Image } from '@/components/image'
 import ErrorPage from '@/pages/error-page'
 import LoadingPage from '@/pages/loading-page'
 import BaseDetails from '@/pages/product/components/base-details'
@@ -7,7 +7,7 @@ import BusinessDetails from '@/pages/product/components/business-detail'
 import DetailTable from '@/pages/product/components/detail-table'
 import ProductReviews from '@/pages/product/components/product-reviews'
 import SimilarProducts from '@/pages/product/components/similar-products'
-import { useProductStore } from '@/pages/product/product-store'
+import { useProductStore } from '@/store/product-store'
 import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
@@ -47,9 +47,9 @@ export default function ProductPage() {
         <div className="flex space-x-4">
           {product.featurePhoto && (
             <div className="h-96">
-              <img
-                src={`${BASE_API_URL}${product.featurePhoto}`}
-                alt={product.description ?? 'Product photo'}
+              <Image
+                src={product.featurePhoto}
+                alt={product.description ?? 'product-photo'}
                 className="size-full rounded-sm object-contain"
               />
             </div>

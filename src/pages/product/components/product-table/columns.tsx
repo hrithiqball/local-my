@@ -1,17 +1,11 @@
+import { Button } from '@/components/ui/button'
 import { Product } from '@/types/product'
 import { ColumnDef } from '@tanstack/react-table'
-import { MoreHorizontal, ArrowUpDown } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu'
+import { ArrowUpDown } from 'lucide-react'
+
 import { Checkbox } from '@/components/ui/checkbox'
 import { Link } from 'react-router-dom'
+import ActionsProductCell from './actions-product-cell'
 
 export const columns: ColumnDef<Product>[] = [
   {
@@ -92,31 +86,7 @@ export const columns: ColumnDef<Product>[] = [
   },
   {
     id: 'actions',
-    cell: ({ row }) => {
-      const product = row.original
-
-      return (
-        <div className="text-right">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="size-8 p-0">
-                <MoreHorizontal className="size-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem onClick={() => navigator.clipboard.writeText(product.id)}>
-                Copy Product ID
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link to={`/product/edit/${product.id}`}>Edit</Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-      )
-    },
+    cell: ({ row }) => <ActionsProductCell product={row.original} />,
     enableSorting: false,
     enableHiding: false
   }

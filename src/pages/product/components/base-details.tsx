@@ -1,5 +1,5 @@
 import Rating from '@/components/rating'
-import { useProductStore } from '../product-store'
+import { useProductStore } from '../../../store/product-store'
 
 const dummyRating = 4.5
 const dummyReviews = 23

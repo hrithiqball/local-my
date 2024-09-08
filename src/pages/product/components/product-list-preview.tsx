@@ -1,3 +1,8 @@
+import { getProductList } from '@/api/product'
+import ErrorComponent from '@/components/error'
+import { Image } from '@/components/image'
+import LoadingComponent from '@/components/loading'
+import { Card, CardContent } from '@/components/ui/card'
 import {
   Carousel,
   CarouselContent,
@@ -5,15 +10,10 @@ import {
   CarouselNext,
   CarouselPrevious
 } from '@/components/ui/carousel'
+import { ProductFilter } from '@/types/product'
+import { useQuery } from '@tanstack/react-query'
 import { Plus } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
-import { Card, CardContent } from '../ui/card'
-import { useQuery } from '@tanstack/react-query'
-import { getProductList } from '@/api/product'
-import LoadingComponent from '../loading'
-import ErrorComponent from '../error'
-import { ProductFilter } from '@/types/product'
-import { BASE_API_URL } from '@/lib/constants'
 
 type ProductListPreviewProps = {
   businessId: string
@@ -53,11 +53,7 @@ export default function ProductListPreview({ businessId }: ProductListPreviewPro
                   <Card>
                     <CardContent className="flex aspect-square items-center justify-center p-1">
                       {product.featurePhoto ? (
-                        <img
-                          src={`${BASE_API_URL}/${product.featurePhoto}`}
-                          alt=""
-                          className="size-full object-contain"
-                        />
+                        <Image className="size-full" src={product.featurePhoto} alt="" />
                       ) : (
                         <span className="text-3xl font-semibold">No photo</span>
                       )}

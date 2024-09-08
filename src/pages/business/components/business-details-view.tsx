@@ -1,7 +1,8 @@
 import { getBusiness } from '@/api/business'
 import ErrorComponent from '@/components/error'
+import { Image } from '@/components/image'
 import Loading from '@/components/loading'
-import ProductListPreview from '@/components/product/product-list-preview'
+import ProductListPreview from '@/pages/product/components/product-list-preview'
 import { Button } from '@/components/ui/button'
 import DialogDrawer from '@/components/ui/dialog-drawer'
 import {
@@ -15,7 +16,6 @@ import {
 import { Table, TableBody, TableCaption, TableCell, TableRow } from '@/components/ui/table'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { CopyToClipboard } from '@/lib/clipboard'
-import { BASE_API_URL } from '@/lib/constants'
 import { useAuthStore } from '@/store/auth-store'
 import { useQuery } from '@tanstack/react-query'
 import { format } from 'date-fns'
@@ -104,21 +104,17 @@ export default function BusinessDetailsView({ businessId }: BusinessDetailsViewP
       <div className="relative w-full max-w-sm">
         <div className="flex aspect-video h-48 w-full items-center justify-center overflow-hidden rounded-lg bg-gray-200">
           {data.coverPhoto ? (
-            <img
-              alt="cover_photo"
-              src={`${BASE_API_URL}${data.coverPhoto}`}
-              className="h-full w-full object-cover"
-            />
+            <Image src={data.coverPhoto} alt="cover-photo" className="size-full object-contain" />
           ) : (
             <span className="text-sm text-gray-500">Click to add a cover photo</span>
           )}
         </div>
         <div className="absolute -bottom-4 left-4 size-20 translate-y-1/2 transform overflow-hidden rounded-full border-2 border-gray-500 bg-gray-200">
           {data.profilePhoto ? (
-            <img
-              src={`${BASE_API_URL}${data.profilePhoto}`}
-              alt="Profile Photo"
-              className="h-full w-full object-cover"
+            <Image
+              src={data.profilePhoto}
+              alt="profile-photo"
+              className="size-full object-contain"
             />
           ) : (
             <span className="flex h-full items-center justify-center text-center text-xs text-gray-500">

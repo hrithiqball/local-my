@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { CreditCard, HandCoins, PhoneCallIcon, QrCode, WalletCards } from 'lucide-react'
 import { useCallback, useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { useProductStore } from '../product-store'
+import { useProductStore } from '../../../store/product-store'
 
 export default function DetailTable() {
   const [searchParams, setSearchParams] = useSearchParams()
