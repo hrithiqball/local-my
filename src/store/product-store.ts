@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+
 import { Product } from '@/types/product'
 
 type ProductState = {

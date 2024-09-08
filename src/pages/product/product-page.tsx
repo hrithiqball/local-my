@@ -1,3 +1,7 @@
+import { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
+
 import { getProduct } from '@/api/product'
 import { Image } from '@/components/image'
 import ErrorPage from '@/pages/error-page'
@@ -8,9 +12,6 @@ import DetailTable from '@/pages/product/components/detail-table'
 import ProductReviews from '@/pages/product/components/product-reviews'
 import SimilarProducts from '@/pages/product/components/similar-products'
 import { useProductStore } from '@/store/product-store'
-import { useQuery } from '@tanstack/react-query'
-import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
 
 export default function ProductPage() {
   const { id } = useParams()

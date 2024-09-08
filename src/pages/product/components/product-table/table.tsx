@@ -1,13 +1,4 @@
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow
-} from '@/components/ui/table'
+import { useState } from 'react'
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -17,16 +8,26 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   SortingState,
-  VisibilityState,
-  useReactTable
+  useReactTable,
+  VisibilityState
 } from '@tanstack/react-table'
-import { useState } from 'react'
+
+import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
+import { Input } from '@/components/ui/input'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
+} from '@/components/ui/table'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]

@@ -1,5 +1,7 @@
-import { Product } from '@/types/product'
-import { useProductStore } from '../../../../store/product-store'
+import { Link } from 'react-router-dom'
+import { MoreHorizontal } from 'lucide-react'
+
+import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,9 +10,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { Button } from '@/components/ui/button'
-import { MoreHorizontal } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { useProductStore } from '@/store/product-store'
+import { Product } from '@/types/product'
 
 type ActionsProductCellProps = {
   product: Product

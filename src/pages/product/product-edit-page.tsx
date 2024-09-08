@@ -1,9 +1,15 @@
-import { getProduct, updateProduct } from '@/api/product'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { Boxes, DollarSign, FileText, Package, Tag } from 'lucide-react'
+import { toast } from 'sonner'
+
+import { getProduct, updateProduct } from '@/api/product'
 import ErrorComponent from '@/components/error'
 import LoadingComponent from '@/components/loading'
-import Header from '@/components/ui/header'
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
@@ -12,15 +18,10 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Boxes, DollarSign, FileText, Package, Tag } from 'lucide-react'
+import Header from '@/components/ui/header'
 import { Input } from '@/components/ui/input'
 import { UpdateProduct, UpdateProductInput } from '@/types/product'
 import { UpdateProductSchema } from '@/validation/product'
-import { useEffect } from 'react'
-import { Button } from '@/components/ui/button'
-import { toast } from 'sonner'
 
 export default function ProductEditPage() {
   const { id } = useParams()
