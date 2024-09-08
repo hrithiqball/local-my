@@ -1,6 +1,6 @@
 import { deleteBusiness, getCurrentUserBusiness } from '@/api/business'
-import BusinessDetailsView from '@/components/business/business-details-view'
-import CreateBusinessForm from '@/components/business/create-business-form'
+import BusinessDetailsView from '@/pages/business/components/business-details-view'
+import CreateBusinessForm from '@/pages/business/components/create-business-form'
 import {
   AlertDialog,
   AlertDialogAction,

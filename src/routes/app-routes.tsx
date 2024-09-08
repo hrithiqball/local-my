@@ -20,34 +20,36 @@ const UpdateBusinessPage = lazy(() => import('@/pages/business/update-business-p
 
 const ProductCreatePage = lazy(() => import('@/pages/product/product-create-page'))
 const ProductPage = lazy(() => import('@/pages/product/product-page'))
+const ProductEditPage = lazy(() => import('@/pages/product/product-edit-page'))
 
 function AppRoutes(): JSX.Element {
   return (
     <Router>
       <Suspense fallback={<LoadingPage lazy />}>
         <Routes>
-          <Route element={<MainLayout />}>
+          <Route path="/" element={<MainLayout />}>
             <Route index element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
+            <Route path="about" element={<AboutPage />} />
 
-            <Route path="/business">
+            <Route path="business">
               <Route index element={<BusinessListPage />} />
               <Route path=":businessId" element={<BusinessPage />} />
               <Route path="user/:userId" element={<BusinessUserPage />} />
             </Route>
 
-            <Route path="/product">
+            <Route path="product">
               <Route path=":id" element={<ProductPage />} />
+              <Route path="edit/:id" element={<ProductEditPage />} />
             </Route>
 
             <Route element={<PrivateRoutes />}>
-              <Route path="/profile/:id" element={<ProfilePage />} />
+              <Route path="profile/:id" element={<ProfilePage />} />
 
-              <Route path="/business">
+              <Route path="business">
                 <Route path="update/:businessId" element={<UpdateBusinessPage />} />
               </Route>
 
-              <Route path="/product">
+              <Route path="product">
                 <Route path="create/:businessId" element={<ProductCreatePage />} />
               </Route>
             </Route>
