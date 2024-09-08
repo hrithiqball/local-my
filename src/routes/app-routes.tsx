@@ -14,31 +14,44 @@ const RegisterPage = lazy(() => import('@/pages/auth/register-page'))
 
 const ProfilePage = lazy(() => import('@/pages/profile-page'))
 
+const BusinessPage = lazy(() => import('@/pages/business/business-page'))
 const BusinessListPage = lazy(() => import('@/pages/business/business-list-page'))
-
-const BasePage = lazy(() => import('@/pages/base-page'))
-const CurrentUserBusinessPage = lazy(() => import('@/pages/business/current-business-page'))
+const BusinessUserPage = lazy(() => import('@/pages/business/business-user-page'))
 const UpdateBusinessPage = lazy(() => import('@/pages/business/update-business-page'))
+
+const ProductCreatePage = lazy(() => import('@/pages/product/product-create-page'))
+const ProductPage = lazy(() => import('@/pages/product/product-page'))
+const ProductEditPage = lazy(() => import('@/pages/product/product-edit-page'))
 
 function AppRoutes(): JSX.Element {
   return (
     <Router>
       <Suspense fallback={<LoadingPage lazy />}>
         <Routes>
-          <Route element={<MainLayout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
+          <Route path="/" element={<MainLayout />}>
+            <Route index element={<HomePage />} />
+            <Route path="about" element={<AboutPage />} />
 
-            <Route path="/business" element={<BasePage />}>
+            <Route path="business">
               <Route index element={<BusinessListPage />} />
-              <Route path=":userId" element={<CurrentUserBusinessPage />} />
+              <Route path=":businessId" element={<BusinessPage />} />
+              <Route path="user/:userId" element={<BusinessUserPage />} />
+            </Route>
+
+            <Route path="product">
+              <Route path=":id" element={<ProductPage />} />
+              <Route path="edit/:id" element={<ProductEditPage />} />
             </Route>
 
             <Route element={<PrivateRoutes />}>
-              <Route path="/profile/:id" element={<ProfilePage />} />
+              <Route path="profile/:id" element={<ProfilePage />} />
 
-              <Route path="/business" element={<BasePage />}>
+              <Route path="business">
                 <Route path="update/:businessId" element={<UpdateBusinessPage />} />
+              </Route>
+
+              <Route path="product">
+                <Route path="create/:businessId" element={<ProductCreatePage />} />
               </Route>
             </Route>
           </Route>

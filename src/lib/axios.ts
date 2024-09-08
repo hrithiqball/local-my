@@ -23,14 +23,16 @@ api.interceptors.request.use(
 
 export function handleError(error: unknown): never {
   if (error instanceof z.ZodError) {
+    console.error(1, error.errors)
     throw new Error('Schema validation error: ' + JSON.stringify(error.errors))
   }
 
   if (axios.isAxiosError(error)) {
+    console.error(2, error.response?.data)
     throw new Error(error.response?.data || 'An unknown error occurred. Please try again.')
   }
 
-  console.error(error)
+  console.error(3, error)
   throw error
 }
 

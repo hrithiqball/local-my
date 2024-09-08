@@ -7,7 +7,7 @@ import { CaseSensitive, Clock, Globe, Mail, Milestone, Phone } from 'lucide-reac
 import { toast } from 'sonner'
 
 import { getBusiness } from '@/api/business'
-import TimeRangeRow from '@/components/business/time-range-row'
+import TimeRangeRow from '@/pages/business/components/time-range-row'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import {

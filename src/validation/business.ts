@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { ProductSchema } from './product'
 
 export const BusinessSchema = z.object({
   id: z.string(),
@@ -12,7 +13,8 @@ export const BusinessSchema = z.object({
   profilePhoto: z.string().optional(),
   createdAt: z.string(),
   updatedAt: z.string(),
-  businessOwnerId: z.string().optional()
+  businessOwnerId: z.string().optional(),
+  products: z.array(ProductSchema).nullable()
 })
 
 export const BusinessListSchema = z.array(BusinessSchema)
