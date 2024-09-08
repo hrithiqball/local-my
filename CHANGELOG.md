@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/hrithiqball/local-my/compare/v1.1.0...v1.2.0) (2024-09-08)
+
+
+### Features
+
+* able to add new product and view in table ([67b4731](https://github.com/hrithiqball/local-my/commit/67b473107cd83e2b00c90a364b00ace280a8e41e))
+* added api logic for product ([3e60609](https://github.com/hrithiqball/local-my/commit/3e60609e28c3967fe06e12e463cb6bad67d1fec7))
+* added create product form ([9eeefca](https://github.com/hrithiqball/local-my/commit/9eeefcadac5c35b4d898c914eb66ecad0f742105))
+* added option to delete product ([43f4231](https://github.com/hrithiqball/local-my/commit/43f423161d1421901e53957888c357293fda664d))
+* added view product page ([0733e58](https://github.com/hrithiqball/local-my/commit/0733e5899845e464df0f64682121d8a30c96a04c))
+* view list of product in carousel preview ([8772de9](https://github.com/hrithiqball/local-my/commit/8772de92d77dbc14e46006274d1bca10a04c6a5f))
+
 # [1.1.0](https://github.com/hrithiqball/local-my/compare/v1.0.2...v1.1.0) (2024-09-01)
 
 
