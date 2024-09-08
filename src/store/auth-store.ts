@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 
-import { User } from '@/types/user'
 import { createSelectors } from '@/store/create-selector'
+import { User } from '@/types/user'
 
 type AuthState = {
   token: string | null

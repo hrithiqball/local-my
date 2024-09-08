@@ -1,5 +1,6 @@
-import { useAuthStore } from '@/store/auth-store'
 import { Navigate, Outlet } from 'react-router-dom'
+
+import { useAuthStore } from '@/store/auth-store'
 
 export default function PrivateRoutes(): JSX.Element {
   const token = useAuthStore.use.token()

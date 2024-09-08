@@ -1,6 +1,7 @@
-import { BASE_API_URL } from '@/lib/constants'
 import axios from 'axios'
 import { z } from 'zod'
+
+import { BASE_API_URL } from '@/lib/constants'
 
 const api = axios.create({
   baseURL: BASE_API_URL

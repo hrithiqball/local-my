@@ -1,8 +1,9 @@
+import { lazy, Suspense } from 'react'
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+
 import MainLayout from '@/layout/main-layout'
 import LoadingPage from '@/pages/loading-page'
 import PrivateRoutes from '@/routes/private-route'
-import { lazy, Suspense } from 'react'
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 
 const AboutPage = lazy(() => import('@/pages/about-page'))
 const HomePage = lazy(() => import('@/pages/home-page'))
